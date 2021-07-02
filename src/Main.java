@@ -7,23 +7,22 @@ public class Main {
 		
 		int opcaoInicial;
 		Boolean correto = true;
-		String[] arrayDePalavras = {"Teste1", "Teste2", "Teste3", "Teste4", "Teste5", "Teste6", 
-				"Teste7", "Teste8", "Teste9", "Teste10", "Teste11", "Teste12"};
+
+		String[] alfabeto = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+				"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 		
 		System.out.println("Bem vindo ao Tapping Game, deseja iniciar?");
 		System.out.println("Digite 1 para iniciar");
 		
 		Scanner leitor = new Scanner(System.in);
-		opcaoInicial = leitor.nextInt();
+		leitor.nextInt();
 		
 		while(correto) {
-			Random random = new Random();
-			int numeroRandomico = random.nextInt(arrayDePalavras.length);
-			
-			System.out.println("Digite a palavra: " + arrayDePalavras[numeroRandomico]);
+			String palavra = geradorDePalavras(alfabeto);
+			System.out.println("Digite a palavra: " + palavra);
 			String palavraTentativa = leitor.next();
 			
-			if(palavraTentativa.equals(arrayDePalavras[numeroRandomico])) {
+			if(palavraTentativa.equals(palavra)) {
 				System.out.println("Correto!");
 				correto = true;
 			} else {
@@ -32,6 +31,15 @@ public class Main {
 			}
 		}
 
+	}
+
+	public static String geradorDePalavras(String[] alfabeto) {
+		Random r = new Random();
+		String palavra = "";
+		for(int x = 0; x < 10; x++){
+			palavra = palavra + alfabeto[r.nextInt(25)];
+		}
+		return palavra;
 	}
 
 }
